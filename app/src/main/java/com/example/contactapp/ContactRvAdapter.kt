@@ -22,7 +22,7 @@ class ContactRvAdapter(var contactList:List<contactData>):RecyclerView.Adapter<C
         var currentContact=contactList.get(position)
         var binding=holder.binding
         binding.tvname.text=currentContact.names
-        binding.tvcontact.text= currentContact.contact.toString()
+        binding.tvcontact.text= currentContact.contact
         binding.ivavator.imageAlpha
 
 
@@ -31,9 +31,9 @@ class ContactRvAdapter(var contactList:List<contactData>):RecyclerView.Adapter<C
             .load(currentContact.avator)
 //            .resize(80,80)
 //            .centerCrop()
-//            .placeholder(drawable.a)
+            .placeholder(R.drawable.lynette)
             .transform(CropCircleTransformation())
-//            .error(R.drawable.)
+            .error(R.drawable.lynette)
             .into(binding.ivavator)
 
     }
