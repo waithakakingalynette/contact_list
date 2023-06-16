@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.contactapp.databinding.ContactListItemBinding
+import com.squareup.picasso.Picasso
+import jp.wasabeef.picasso.transformations.CropCircleTransformation
 
 class ContactRvAdapter(var contactList:List<contactData>):RecyclerView.Adapter<ContactViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
@@ -21,17 +23,18 @@ class ContactRvAdapter(var contactList:List<contactData>):RecyclerView.Adapter<C
         var binding=holder.binding
         binding.tvname.text=currentContact.names
         binding.tvcontact.text= currentContact.contact.toString()
-        binding.tvnames.text=currentContact.names
-        binding.tvnames1.text=currentContact.names
-//        binding.tvnames2.text=currentContact.names
-        binding.tvcontact1.text=currentContact.contact.toString()
-        binding.tvcontact2.text=currentContact.contact.toString()
-        binding.tvcontact3.text=currentContact.contact.toString()
-        binding.imageView.imageAlpha
-        binding.imageView2.imageAlpha
-        binding.imageView3.imageAlpha
-        binding.imageView4.imageAlpha
+        binding.ivavator.imageAlpha
 
+
+        Picasso
+            .get()
+            .load(currentContact.avator)
+//            .resize(80,80)
+//            .centerCrop()
+//            .placeholder(drawable.a)
+            .transform(CropCircleTransformation())
+//            .error(R.drawable.)
+            .into(binding.ivavator)
 
     }
 
