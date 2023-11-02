@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.contactapp.model.Contacts_Data
 
-@Database(entities = arrayOf(Contacts_Data::class), version = 1)
+@Database(entities = arrayOf(Contacts_Data::class), version = 2)
 abstract class ContactsDB: RoomDatabase() {
     abstract fun getContactDao():ContactDao
 
@@ -16,6 +16,7 @@ abstract class ContactsDB: RoomDatabase() {
         fun getDatabase(context: Context):ContactsDB{
             if(database==null){
                 database=Room.databaseBuilder(context,ContactsDB::class.java,"ContactsDB")
+                    .fallbackToDestructiveMigration()
                     .build()
             }
             return database as ContactsDB
